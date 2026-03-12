@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark In Summer Long Ago</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#top">Mark <span>In Summer</span> Long Ago</a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          Menu
+        </button>
+
+        <nav class="nav-links" id="nav-links">
+          <a href="#concerts">Concerts</a>
+          <a href="#stories">Meetings</a>
+          <a href="#timeline">Calendars</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Following the music through the years</div>
+
+            <h1>
+              <span>Mark</span><br />
+              <span class="accent">In Summer</span><br />
+              <span>Long Ago</span>
+            </h1>
+
+            <p>Mark In Summer Long Ago…” refers to the very first time I saw Mark Knopfler live on stage, on July 9, 1996, and to his beautiful song A Night In Summer Long Ago, which I used to listen to with my beloved grandmother.</p>
+
+        	<p>This website is my way of sharing my passion for Mark Knopfler’s music with you. Here, you will find reviews and photos from the concerts I have attended, along with memories of the occasions when I had the privilege of meeting the man himself. I hope you enjoy your visit.
+            </p>
+
+            <div class="stats">
+              <div class="stat-card">
+                <div class="stat-label">All</div>
+                <div class="stat-value">Concerts</div>
+                <div class="stat-note">Live memories</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-label">Other Event</div>
+                <div class="stat-value">Meetings</div>
+                <div class="stat-note">Reviews</div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-label">Archive</div>
+                <div class="stat-value">Calendars</div>
+                <div class="stat-note">From 2006 to 2016</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="container footer-row">
+        <div>Copyright Nelly Duclos 2026</div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".nav-links");
+
+      toggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+    </script>
+  </body>
+</html>
