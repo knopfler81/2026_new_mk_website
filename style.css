@@ -843,13 +843,38 @@ footer {
 .button-orange:active {
   transform: translateY(0);
 }
-
 /* Mobile menu */
 @media (max-width: 900px) {
+  .site-header,
+  header.site-header {
+    padding: 0;
+  }
+
+  .nav {
+    min-height: auto;
+    padding: 14px 0;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .brand {
+    font-size: clamp(0.8rem, 3.8vw, 1rem);
+    line-height: 1.2;
+    max-width: calc(100% - 120px);
+  }
+
   .menu-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
   }
 
   #menu {
@@ -860,6 +885,11 @@ footer {
 
   #menu.open {
     display: block;
+  }
+
+  .nav-links {
+    width: 100%;
+    padding: 0;
   }
 
   .navigation {
@@ -902,27 +932,83 @@ footer {
     box-shadow: none;
   }
 
-  .navigation li:hover > ul {
-    display: none;
-  }
-
   .navigation li.open > ul {
     display: block;
   }
 
-  .navigation li ul li a {
+  .navigation li:hover > ul {
+    display: none;
+  }
+
+  .navigation li ul li {
+    border-bottom: 0;
+  }
+
+  .navigation li ul li > a,
+  .navigation li ul li > button,
+  .navigation li ul li > span {
     display: block;
     padding: 12px 20px;
     white-space: normal;
+    text-align: left;
   }
 
-  .site-header,
-  header.site-header {
-    padding: 0;
+  .navigation li ul li ul {
+    margin-top: 6px;
+    margin-left: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
   }
 
-  .brand {
-    font-size: clamp(0.8rem, 3.8vw, 1rem);
-    line-height: 1.2;
+  .navigation li ul li ul a {
+    padding-left: 18px;
+    font-size: 0.95rem;
+  }
+
+  .hero {
+    min-height: 100svh;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .hero-grid {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: 32px 0 40px;
+  }
+
+  .hero-copy {
+    grid-column: auto;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 12vw, 4.8rem);
+  }
+
+  .stats,
+  .dimension-grid,
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 76px 0;
+  }
+
+  .hero-actions,
+  .cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button,
+  .button-outline {
+    width: 100%;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

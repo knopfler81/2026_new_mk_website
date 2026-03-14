@@ -29,10 +29,11 @@ async function loadIncludes() {
       });
     }
 
-    document.querySelectorAll(".navigation > li").forEach((item) => {
+    document.querySelectorAll(".navigation li").forEach((item) => {
       const trigger = item.querySelector(":scope > a, :scope > button");
+      const submenu = item.querySelector(":scope > ul");
 
-      if (trigger && item.querySelector("ul")) {
+      if (trigger && submenu) {
         trigger.addEventListener("click", (e) => {
           if (window.innerWidth <= 900) {
             e.preventDefault();
