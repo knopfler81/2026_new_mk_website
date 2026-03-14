@@ -28,6 +28,19 @@ async function loadIncludes() {
         toggle.setAttribute("aria-expanded", String(open));
       });
     }
+
+    document.querySelectorAll(".navigation > li").forEach((item) => {
+      const trigger = item.querySelector(":scope > a, :scope > button");
+
+      if (trigger && item.querySelector("ul")) {
+        trigger.addEventListener("click", (e) => {
+          if (window.innerWidth <= 900) {
+            e.preventDefault();
+            item.classList.toggle("open");
+          }
+        });
+      }
+    });
   } catch (error) {
     console.error("Erreur includes :", error);
   }
