@@ -19,26 +19,78 @@ async function loadIncludes() {
       footerTarget.innerHTML = await footerResponse.text();
     }
 
+    const isMobileMenu = () => window.matchMedia("(max-width: 780px)").matches;
+
     const toggle = document.querySelector(".menu-toggle");
-    const nav = document.querySelector("#menu");
+    const nav = document.getElementById("menu");
+    const navigation = nav ? nav.querySelector(".navigation") : null;
 
     if (toggle && nav) {
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("click", function (e) {
+        if (!isMobileMenu()) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
         const open = nav.classList.toggle("open");
         toggle.setAttribute("aria-expanded", String(open));
+
+        if (!open) {
+          nav.querySelectorAll("li.open").forEach(function (li) {
+            li.classList.remove("open");
+          });
+        }
       });
     }
 
-    document.querySelectorAll(".navigation li").forEach((item) => {
-      const trigger = item.querySelector(":scope > a, :scope > button");
-      const submenu = item.querySelector(":scope > ul");
+    if (navigation) {
+      navigation.addEventListener("click", function (e) {
+        if (!isMobileMenu()) return;
 
-      if (trigger && submenu) {
-        trigger.addEventListener("click", (e) => {
-          if (window.innerWidth <= 900) {
-            e.preventDefault();
-            item.classList.toggle("open");
+        const link = e.target.closest("a");
+        if (!link) return;
+
+        const item = link.parentElement;
+        if (!item || item.tagName !== "LI") return;
+
+        const submenu = Array.from(item.children).find(function (child) {
+          return child.tagName === "UL";
+        });
+
+        if (!submenu) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = item.classList.contains("open");
+
+        Array.from(item.parentElement.children).forEach(function (sibling) {
+          if (sibling !== item) {
+            sibling.classList.remove("open");
+            sibling.querySelectorAll("li.open").forEach(function (sub) {
+              sub.classList.remove("open");
+            });
           }
+        });
+
+        if (isOpen) {
+          item.classList.remove("open");
+          item.querySelectorAll("li.open").forEach(function (sub) {
+            sub.classList.remove("open");
+          });
+        } else {
+          item.classList.add("open");
+        }
+      });
+    }
+
+    document.addEventListener("click", function (e) {
+      if (!isMobileMenu()) return;
+      if (nav && !nav.contains(e.target) && toggle && !toggle.contains(e.target)) {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        nav.querySelectorAll("li.open").forEach(function (li) {
+          li.classList.remove("open");
         });
       }
     });
